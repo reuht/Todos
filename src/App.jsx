@@ -2,25 +2,35 @@ import React from "react";
 import Nav from "./Components/Nav";
 import Search from "./Components/Search";
 import TotalTodo from "./Components/TotalTodo";
+import ListTask from "./Components/ListTask";
 import { useState } from "react";
 
-
 function App() {
+  const [todos, setTodos] = useState([
+    {
+      task: "Comprar chocolate",
+      pending: true,
+    },
+    {
+      task: "Terminar tareas pendientes",
+      pending: true,
+    },
+  ]);
 
-  const [todo, setTodo] = useState([]);
   const [task, setTask] = useState("");
 
   return (
-    <div className="container is-max-widescreen">
+    <>
       <Nav />
-      <br/>
-        <TotalTodo/>
-      <br/>
-      <Search
-        task = {task}
-        setTask = {setTask}
-      />
-    </div>
+      <div className="container is-max-widescreen">
+        <br />
+        <TotalTodo />
+        <br />
+        <Search task={task} setTask={setTask} />
+        <br />
+        <ListTask todos={todos} />
+      </div>
+    </>
   );
 }
 
